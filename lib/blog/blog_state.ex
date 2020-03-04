@@ -6,6 +6,10 @@ defmodule Blog.BlogState do
     Agent.start_link(fn -> [users, %{}] end, name: __MODULE__)
   end
 
+  def list_posts() do
+    Agent.get(__MODULE__, fn [_, posts] -> posts end)
+  end
+
   def create_post(post) do
     Agent.get_and_update(__MODULE__, fn [users, posts] ->
       {user_id, post} = Map.pop(post, :user_id)

@@ -1,6 +1,6 @@
 # BlogPost tester
 
-Start the server with the included bash script `start.sh`.
+Start the server with the included bash script `start.sh` or `docker-compose up`.
 
 GraphiQL is at `localhost:4000/api/graphiql`.
 

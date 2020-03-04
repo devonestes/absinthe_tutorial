@@ -1,4 +1,8 @@
 defmodule BlogWeb.Resolvers.Content do
+  def list_posts(_, _, _) do
+    {:ok, Blog.BlogState.list_posts()}
+  end
+
   def create_post(_parent, args, _) do
     {:ok, Blog.BlogState.create_post(args.params)}
   end
