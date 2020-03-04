@@ -1,26 +1,12 @@
-# Absinthe Tutorial Code
+# BlogPost tester
 
-This repository houses the example code for the official Absinthe tutorial
-that ships with [Absinthe's documentation](https://hexdocs.pm/absinthe).
+Start the server with the included bash script `start.sh`.
 
-It currently targets:
+GraphiQL is at `localhost:4000/api/graphiql`.
 
-- Absinthe v1.4
-- Phoenix v1.3
+Since the subscriptions are on `user_id`, I made it so there's always two users with ID 1 and 2.
+No need to create the users first - they'll always be there.
 
-## Contributing/Scope
-
-Note the tutorial's target audience are beginners and the scope is
-currently limited to queries, mutations, and basic schema definitions.
-
-Contributions of additional features (e.g., subscriptions, more complex types, file uploads, etc)
-should:
-
-- Still keep beginners in mind.
-- Be linked to a PR in the [absinthe](https://github.com/absinthe-graphql/absinthe) project
-  contributing a draft of accompanying text---as a believable expansion of the tutorial
-  narrative.
-
-## License
-
-See [LICENSE.md](./LICENSE.md).
+For the subscriptions you'll need Postgres running on the default port `5432` since that's what's
+used for the pub-sub. The data for posts isn't persisted, though, so if you shut down the app
+you'll clear the data (except for the two users who are always there).

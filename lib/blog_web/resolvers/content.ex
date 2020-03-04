@@ -1,17 +1,13 @@
 defmodule BlogWeb.Resolvers.Content do
-
-  def list_posts(%Blog.Accounts.User{} = author, args, _resolution) do
-    {:ok, Blog.Content.list_posts(author, args)}
-  end
-  def list_posts(_parent, _args, _resolution) do
-    {:ok, Blog.Content.list_posts()}
+  def create_post(_parent, args, _) do
+    {:ok, Blog.BlogState.create_post(args.params)}
   end
 
-  def create_post(_parent, args, %{context: %{current_user: user}}) do
-    Blog.Content.create_post(user, args)
-  end
-  def create_post(_parent, _args, _resolution) do
-    {:error, "Access denied"}
+  def update_post(_parent, args, _) do
+    {:ok, Blog.BlogState.update_post(args.params)}
   end
 
+  def delete_post(_parent, args, _) do
+    {:ok, Blog.BlogState.delete_post(args.id)}
+  end
 end

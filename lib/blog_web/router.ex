@@ -10,10 +10,13 @@ defmodule BlogWeb.Router do
     pipe_through :api
 
     forward "/graphiql", Absinthe.Plug.GraphiQL,
-      schema: BlogWeb.Schema
+      schema: BlogWeb.Schema,
+      socket: BlogWeb.UserSocket,
+      interface: :advanced
 
     forward "/", Absinthe.Plug,
-      schema: BlogWeb.Schema
+      schema: BlogWeb.Schema,
+      socket: BlogWeb.UserSocket
   end
 
 end
