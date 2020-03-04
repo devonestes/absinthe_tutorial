@@ -12,7 +12,6 @@ services:
     volumes:
         - ./postgres-data:/var/lib/postgresql/data
   blog:
-    image: blog:latest
     build: .
     environment:
       - DATABASE_URL=ecto://postgres:postgres@db/capacitor_dev

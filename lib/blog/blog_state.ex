@@ -7,7 +7,7 @@ defmodule Blog.BlogState do
   end
 
   def list_posts() do
-    Agent.get(__MODULE__, fn [_, posts] -> posts end)
+    Agent.get(__MODULE__, fn [_, posts] -> Map.values(posts) end)
   end
 
   def create_post(post) do
