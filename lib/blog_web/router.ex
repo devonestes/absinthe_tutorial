@@ -4,6 +4,7 @@ defmodule BlogWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
     plug BlogWeb.Context
+    plug CORSPlug, origin: "*"
   end
 
   scope "/api" do

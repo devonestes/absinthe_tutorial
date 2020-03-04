@@ -45,7 +45,8 @@ defmodule Blog.Mixfile do
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_phoenix, "~> 1.4.0"},
       {:poison, ">= 0.0.0"},
-      {:jason, ">= 0.0.0"}
+      {:jason, ">= 0.0.0"},
+      {:cors_plug, "~> 1.5"}
     ]
   end
 
