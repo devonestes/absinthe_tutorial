@@ -49,7 +49,7 @@ defmodule BlogWeb.Schema do
       trigger(:delete_post, topic: &trigger/1)
     end
 
-    field :post_updated_combined, :post do
+    field :post_updated_combined, :subscription_post do
       arg :user_id, non_null(:id)
       config &config/2
 

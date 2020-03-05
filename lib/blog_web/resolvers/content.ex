@@ -4,14 +4,17 @@ defmodule BlogWeb.Resolvers.Content do
   end
 
   def create_post(_parent, args, _) do
-    {:ok, Blog.BlogState.create_post(args.params)}
+    post = Blog.BlogState.create_post(args.params)
+    {:ok, Map.put(post, :operation, :created)}
   end
 
   def update_post(_parent, args, _) do
-    {:ok, Blog.BlogState.update_post(args.params)}
+    post = Blog.BlogState.update_post(args.params)
+    {:ok, Map.put(post, :operation, :updated)}
   end
 
   def delete_post(_parent, args, _) do
-    {:ok, Blog.BlogState.delete_post(args.id)}
+    post = Blog.BlogState.delete_post(args.params)
+    {:ok, Map.put(post, :operation, :deleted)}
   end
 end
