@@ -4,17 +4,24 @@ defmodule BlogWeb.Resolvers.Content do
   end
 
   def create_post(_parent, args, _) do
-    post = Blog.BlogState.create_post(args.params)
-    {:ok, Map.put(post, :operation, :created)}
+    args.params |> Blog.BlogState.create_post() |> trigger(:created)
   end
 
   def update_post(_parent, args, _) do
-    post = Blog.BlogState.update_post(args.params)
-    {:ok, Map.put(post, :operation, :updated)}
+    args.params |> Blog.BlogState.update_post() |> trigger(:updated)
   end
 
   def delete_post(_parent, args, _) do
-    post = Blog.BlogState.delete_post(args.params)
-    {:ok, Map.put(post, :operation, :deleted)}
+    args.id |> Blog.BlogState.delete_post() |> trigger(:deleted)
+  end
+
+  defp trigger(post, event) do
+    Absinthe.Subscription.publish(
+      BlogWeb.Endpoint,
+      Map.put(post, :operation, event),
+      post_events: post.user.id
+    )
+
+    {:ok, post}
   end
 end

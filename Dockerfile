@@ -15,4 +15,4 @@ RUN mix do local.hex --force, local.rebar --force
 COPY . .
 
 RUN mix deps.get
-CMD sleep 10 && mix ecto.create && mix ecto.migrate && mix phx.server
+CMD sleep 2 && mix ecto.create && mix ecto.migrate && mix phx.server

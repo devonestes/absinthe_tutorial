@@ -49,15 +49,10 @@ defmodule BlogWeb.Schema do
       trigger(:delete_post, topic: &trigger/1)
     end
 
-    field :post_updated_combined, :subscription_post do
+    field :post_events, :post_event do
       arg :user_id, non_null(:id)
       config &config/2
-
-      trigger(:create_post, topic: &trigger/1)
-      trigger(:update_post, topic: &trigger/1)
-      trigger(:delete_post, topic: &trigger/1)
     end
-
   end
 
   defp config(args, _), do: {:ok, topic: String.to_integer(args.user_id)}
